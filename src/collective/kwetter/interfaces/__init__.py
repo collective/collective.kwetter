@@ -1,2 +1,2 @@
-from collectivekwetterlayer import INfgKwetterLayer
+from collective.kwetter.interfaces.nfgkwetterlayer import INfgKwetterLayer
 

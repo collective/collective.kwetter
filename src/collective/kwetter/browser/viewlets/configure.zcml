@@ -4,10 +4,10 @@
 
     <browser:viewlet
         name="kwetter.viewlets.timeline"
-	manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-	class=".timeline.TimeLineViewlet"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".timeline.TimeLineViewlet"
         permission="zope2.View"
+        layer="collective.kwetter.interfaces.nfgkwetterlayer.INfgKwetterLayer"
         />
-<!-- TODO: layer=".interfaces.IThemeSpecific" -->
 
 </configure>
