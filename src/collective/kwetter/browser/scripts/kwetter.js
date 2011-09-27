@@ -1,5 +1,25 @@
 /* javascript for kwetter microblogger */
 
+/* linkify function taken from http://stackoverflow.com/questions/37684/how-to-replace-plain-urls-with-links/3890175#3890175
+*/
+function linkify(inputText) {
+    var replaceText, replacePattern1, replacePattern2, replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+    //Change email addresses to mailto:: links.
+    replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
+    replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+    return replacedText
+}
+
 
 var Kwetter = {};
 
@@ -121,7 +141,7 @@ Kwetter.update = function (data)
 		ids[row[1]] = row[1];
 		out = out + '<span class="kwetter_msgcontainer' + ' avatar-' + row[1] + '">';
 		out = out + '<span class="kwetter_avatar">' + row[4] + '</span>';
-		out = out + '<span class="kwetter_message">' + row[2] + '</span>';
+		out = out + '<span class="kwetter_message">' + linkify(row[2]) + '</span>';
 		out = out + '<span class="kwetter_datetime">' + row[3] +'</span>';
 		out = out + '</span>';
 	}
