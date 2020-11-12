@@ -28,7 +28,7 @@ setup(name='collective.kwetter',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'plone.browserlayer',
           'Plone',
       ],
       entry_points="""

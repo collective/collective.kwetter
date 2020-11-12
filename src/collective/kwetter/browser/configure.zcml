@@ -2,39 +2,35 @@
            xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="collective.kwetter">
 
-    <!-- If you are using plone version 3.0, you will need to include the 
-         plone.browserlayer package in your buildout and uncomment the following
-         line in order to use IThemeSpecific as a layer attribute -->
-    <!-- 
     <include package="plone.browserlayer" />
-    -->
-
     <include package=".viewlets" />
-    
 
     <browser:page
         for="Products.CMFCore.interfaces.ISiteRoot"
         name="kwetter.gateway"
         class=".gateway.Gateway"
         permission="zope2.View"
+        layer="collective.kwetter.interfaces.nfgkwetterlayer.INfgKwetterLayer"
         />
 
     <browser:view
-      for="*"
-      name="kwetter.avatar"
-      class=".avatar.Avatar"
-      permission="zope2.Public"
-      />
+        for="*"
+        name="kwetter.avatar"
+        class=".avatar.Avatar"
+        permission="zope2.Public"
+        layer="collective.kwetter.interfaces.nfgkwetterlayer.INfgKwetterLayer"
+        />
 
-     <browser:resourceDirectory
-	name="collective.kwetter.scripts"
-	directory="scripts"
-	/>
-     <browser:resourceDirectory
-	name="collective.kwetter.stylesheets"
-	directory="stylesheets" 
-	/>       
+    <browser:resourceDirectory
+        name="collective.kwetter.scripts"
+        directory="scripts"
+        layer="collective.kwetter.interfaces.nfgkwetterlayer.INfgKwetterLayer"
+        />
+
+    <browser:resourceDirectory
+        name="collective.kwetter.stylesheets"
+        directory="stylesheets" 
+        layer="collective.kwetter.interfaces.nfgkwetterlayer.INfgKwetterLayer"
+        />       
             
-
-
 </configure>
